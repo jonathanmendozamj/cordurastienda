@@ -20,10 +20,10 @@ const ItemCount = ({ initial, stock, onAdd }) => {
     };
 
     return (
-        <div class="mb-3 input-group">
-            <button class="btn btn-outline-danger" type="button" title="Quitar al carrito" onClick={ onClickSubtract } disabled={ count === initial }>-</button>
-            <div class="form-control">{ count }</div>
-            <button class="btn btn-outline-danger" type="button" title="Sumar al carrito" onClick={ onClickAdd } disabled={ count === stock }>+</button>
+        <div className="mb-3 input-group">
+            <button className="btn btn-outline-danger" type="button" title="Quitar al carrito" onClick={ onClickSubtract } disabled={ count === initial }>-</button>
+            <div className="form-control">{ count }</div>
+            <button className="btn btn-outline-danger" type="button" title="Sumar al carrito" onClick={ onClickAdd } disabled={ count === stock }>+</button>
         </div>
     );
 };
