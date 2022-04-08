@@ -21,7 +21,6 @@ const ItemListContainer = (props) => {
 
     return(
         <main>
-            <p> { props.greeting } </p>
             <div className="container">
                 <div className="row">
                     <div className="col-lg-9 col-md-9 col-sm-8">
