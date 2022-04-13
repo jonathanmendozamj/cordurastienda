@@ -1,31 +1,47 @@
 import ItemList from "../ItemList/ItemList";
 import { getProducts } from "../asyncmock";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import SideBar from "../SideBar/SideBar";
 
 const ItemListContainer = (props) => {
     console.log("Entro a la f() ItemListContainer");
-    console.log(props);
 
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    const { categoryId } = useParams();
 
     useEffect(() => {
-        getProducts().then(prods => {
+        setLoading(true);
+
+        getProducts(categoryId).then(prods => {
+            console.log('Volvio');
+            console.log(prods);
             setProducts(prods);
         }).catch(error => {
-            console.log(error);
+            console.error(error);
         }).finally(() => {
             console.log('Finalizó la promesa');
+            setLoading(false);
         });
-    }, []);
+    }, [categoryId]);
 
 
     return(
         <main>
-            <div className="container">
+            <div className="container contenedor-principal">
                 <div className="row">
+                    <SideBar />
                     <div className="col-lg-9 col-md-9 col-sm-8">
                         <div id="contenedorProductos" className="row">
-                            <ItemList products={ products } />
+                            {
+                                loading ? 
+                                <h3>Cargando...</h3> :
+                                (products && products.length > 0 ?
+                                <ItemList products={ products } /> :
+                                <h1>No hay productos disponibles</h1>)
+                            }
                         </div>
                     </div>
                 </div>
