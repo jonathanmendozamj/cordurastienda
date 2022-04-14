@@ -15,7 +15,7 @@ const ItemDetail = ({ detail }) => {
                             <h4 className="card-title" style={{ textAlign: "left" }}>{ detail.name }</h4>
                             <p className="card-text">{ detail.description }</p>
                             <p className="card-text">Precio: $ { detail.price }</p>
-                            <p className="card-text">Stock: $ { detail.stock }</p>
+                            <p className="card-text">Stock: { detail.stock }</p>
                         </div>
                         <div className="card-body">
                             <ItemCount initial={ 1 } stock={ detail.stock }/>
