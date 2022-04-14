@@ -31,9 +31,3 @@ export const getCategories = () => new Promise((resolve, reject) => {
         resolve(CATEGORIES);
     }, TIME_TIMEOUT_MS);
 });
-
-/*
-    {
-    
-};
-*/
