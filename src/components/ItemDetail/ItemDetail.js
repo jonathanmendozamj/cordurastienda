@@ -1,7 +1,15 @@
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import ItemCount from './../ItemCount/ItemCount';
 
 const ItemDetail = ({ detail }) => {
+    const [quantity, setQuantity] = useState(0);
     console.log(detail);
+
+    const handleAdd = (count) => {
+        console.log(`La cantidad para agregar es ${ count }`);
+        setQuantity(count);
+    };
 
     return (
         <div>
@@ -18,13 +26,16 @@ const ItemDetail = ({ detail }) => {
                             <p className="card-text">Stock: { detail.stock }</p>
                         </div>
                         <div className="card-body">
-                            <ItemCount initial={ 1 } stock={ detail.stock }/>
-                            <button className="btn btn-danger card-add" >Comprar</button>
+                            {
+                                quantity > 0 ?
+                                <NavLink to="/cart">
+                                    <button className="btn btn-danger card-add" >Ir al carrito</button>
+                                </NavLink> : 
+                                <ItemCount initial={ 1 } stock={ detail.stock } onAdd={ handleAdd }/>
+                            }
                         </div>
                     </div>
                 </div>
-                
-                
             </section>
         </div>
     );

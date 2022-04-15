@@ -34,7 +34,7 @@ const SideBar = () => {
                 <div className="list-group list-group-flush" id="categoriesList">
                     <Link data-categoryindex="all" to="/" className="category-link-all category-link list-group-item list-group-item-action active-category category-list-item-all categoria-productos" id="todas">TODAS</Link>        
                     {
-                        categories.map(category => <Link data-categoryindex="all" to={ `/category/${ category.id }` } className="category-link-all category-link list-group-item list-group-item-action active-category category-list-item-all categoria-productos" id="accesorios">{ category.description }</Link>)
+                        categories.map(category => <Link key={ category.id } data-categoryindex="all" to={ `/category/${ category.id }` } className="category-link-all category-link list-group-item list-group-item-action active-category category-list-item-all categoria-productos" id="accesorios">{ category.description }</Link>)
                     }
                 </div>
             </div>
