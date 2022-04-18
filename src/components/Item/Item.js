@@ -1,9 +1,6 @@
 import { NavLink } from "react-router-dom";
 
 const Item = ({ id, img, name, price, stock }) => {
-    const handleOnClick = () => {
-        console.log(`Hizo click en "Ver detalle" de ${ name }`)
-    };
 
     return(
         <div className="col-md-4">
@@ -15,7 +12,7 @@ const Item = ({ id, img, name, price, stock }) => {
                 </div>
                 <div className="card-body">
                     <NavLink to={`/detail/${id}`}>
-                        <button className="btn btn-danger card-add" onClick={ handleOnClick } >Ver Detalle</button>
+                        <button className="btn btn-danger card-add" >Ver Detalle</button>
                     </NavLink>
                 </div>
             </section>
