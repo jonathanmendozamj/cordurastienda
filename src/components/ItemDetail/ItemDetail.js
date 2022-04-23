@@ -11,6 +11,7 @@ const ItemDetail = ({ id, img, name, description, price, stock }) => {
             id, 
             name, 
             price, 
+            img, 
             quantity: count
         };
 
@@ -35,7 +36,7 @@ const ItemDetail = ({ id, img, name, description, price, stock }) => {
                             {
                                 isInCart(id) ?
                                 <NavLink to="/cart">
-                                    <button className="btn btn-danger card-add" >Ir al carrito</button>
+                                    <button className="btn btn-danger card-add">Terminar mi compra</button>
                                 </NavLink> : 
                                 <ItemCount initial={ 1 } stock={ stock } onAdd={ handleAdd }/>
                             }

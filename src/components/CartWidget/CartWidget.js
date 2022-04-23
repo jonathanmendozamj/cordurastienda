@@ -6,7 +6,7 @@ const CartWidget = ({ count }) => {
     console.log("Entró a la f() CartWidget");
     console.log(count);
 
-    const { isEmpty, getQuantity } = useContext(CartContext);
+    const { getQuantity } = useContext(CartContext);
 
     return(
         <div>
@@ -14,9 +14,7 @@ const CartWidget = ({ count }) => {
                 <BsCartFill />
                  Artículos 
                 {
-                    !isEmpty() ?
-                    <span className="badge bg-danger ml-5"  style={{ display: "inline-block" }}>{ getQuantity() }</span>:
-                    ""
+                    <span className="badge bg-danger ml-5"  style={{ display: "inline-block" }}>{ getQuantity() }</span>
                 }
             </div>
         </div>

@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import CartContext from '../../context/CartContext';
 import { getCategories } from '../asyncmock';
 import CartWidget from '../CartWidget/CartWidget';
 
 const NavBar = () => {
     const [categories, setCategories] = useState([]);
+
+    const { isEmpty } = useContext(CartContext);
 
     useEffect(() => {
         getCategories().then(categories => {
@@ -41,8 +44,11 @@ const NavBar = () => {
                                     )
                                 }
                             </ul>
-
-                            <CartWidget count={ 5 } />
+                            {
+                                !isEmpty() ?
+                                <CartWidget /> :
+                                ""
+                            }
                         </div>
                     </div>
                 </nav>

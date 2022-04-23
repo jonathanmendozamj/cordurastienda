@@ -19,6 +19,15 @@ export const CartContextProvider = ({ children }) => {
         return count;
     };
 
+    const getTotal = () => {
+        let sum = 0;
+        cart.forEach(prod => {
+            sum += prod.price * prod.quantity;
+        });
+
+        return sum;
+    }
+
     const isEmpty = () => {
         return (cart.length === 0);
     };
@@ -44,7 +53,8 @@ export const CartContextProvider = ({ children }) => {
             isInCart,
             isEmpty,
             clearCart,
-            removeItem
+            removeItem,
+            getTotal
         }}>
             { children }
         </CartContext.Provider>
