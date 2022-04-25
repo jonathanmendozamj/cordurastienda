@@ -1,23 +1,33 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getCategories } from "../asyncmock";
+import { getDocs, collection, query, orderBy } from 'firebase/firestore';
+import { firestoreDB } from '../../services/firebase';
 
 const SideBar = () => {
 
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        getCategories().then(categories => {
+        getDocs(query(collection(firestoreDB, "categories"), orderBy("order", "asc"))).then(response => {
+            console.log('Volvio');
+            console.log(response);
+
+            const categories = response.docs.map(doc => {
+                return { id: doc.id, ...doc.data() };
+            });
+
             setCategories(categories);
-        })
-        .catch(error => console.error(error))
-        .finally(() => {
-            console.log('Finalizó');
+        }).catch(error => {
+            console.error(error);
+        }).finally(() => {
+            console.log('Finalizó la promesa');
         });
-    }, [categories]);
+
+    }, []);
+
 
     return (
-        <div className="col-lg-3 col-md-3 col-sm-4">
+        <aside className="col-lg-3 col-md-3 col-sm-4">
             <div className="card">
                 <div className="card-header">
                     Novedades
@@ -39,7 +49,7 @@ const SideBar = () => {
                 </div>
             </div>
 
-        </div>
+        </aside>
     );
 };
 
