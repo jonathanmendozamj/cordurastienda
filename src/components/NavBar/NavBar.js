@@ -1,40 +1,22 @@
 import { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import CartContext from '../../context/CartContext';
-import { getCategories } from '../asyncmock';
-import CartWidget from '../CartWidget/CartWidget';
+import { getCategories } from '../../services/firebase/firestore';
 
-import { getDocs, collection, query, orderBy } from 'firebase/firestore';
-import { firestoreDB } from '../../services/firebase';
+import CartWidget from '../CartWidget/CartWidget';
 
 const NavBar = () => {
     const [categories, setCategories] = useState([]);
     const { isEmpty } = useContext(CartContext);
 
     useEffect(() => {
-        /*getCategories().then(categories => {
+        getCategories().then(categories => {
             setCategories(categories);
         })
         .catch(error => console.error(error))
         .finally(() => {
             console.log('Finalizó');
-        });*/
-
-        getDocs(query(collection(firestoreDB, "categories"), orderBy("order", "asc"))).then(response => {
-            console.log('Volvio');
-            console.log(response);
-
-            const categories = response.docs.map(doc => {
-                return { id: doc.id, ...doc.data() };
-            });
-
-            setCategories(categories);
-        }).catch(error => {
-            console.error(error);
-        }).finally(() => {
-            console.log('Finalizó la promesa');
         });
-
     }, []);
     
     return (

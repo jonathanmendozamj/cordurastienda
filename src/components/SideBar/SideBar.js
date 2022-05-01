@@ -1,30 +1,19 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getDocs, collection, query, orderBy } from 'firebase/firestore';
-import { firestoreDB } from '../../services/firebase';
+import { getCategories } from "../../services/firebase/firestore";
 
 const SideBar = () => {
-
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        getDocs(query(collection(firestoreDB, "categories"), orderBy("order", "asc"))).then(response => {
-            console.log('Volvio');
-            console.log(response);
-
-            const categories = response.docs.map(doc => {
-                return { id: doc.id, ...doc.data() };
-            });
-
+        getCategories().then(categories => {
             setCategories(categories);
-        }).catch(error => {
-            console.error(error);
-        }).finally(() => {
-            console.log('Finalizó la promesa');
+        })
+        .catch(error => console.error(error))
+        .finally(() => {
+            console.log('Finalizó');
         });
-
     }, []);
-
 
     return (
         <aside className="col-lg-3 col-md-3 col-sm-4">

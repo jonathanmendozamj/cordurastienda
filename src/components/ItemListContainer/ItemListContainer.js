@@ -1,10 +1,8 @@
 import ItemList from "../ItemList/ItemList";
-import { getProducts } from "../asyncmock";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import SideBar from "../SideBar/SideBar";
-import { getDocs, collection, query, where, orderBy } from 'firebase/firestore';
-import { firestoreDB } from '../../services/firebase';
+import { getProducts } from "../../services/firebase/firestore";
 
 const ItemListContainer = (props) => {
     console.log("Entro a la f() ItemListContainer");
@@ -19,11 +17,7 @@ const ItemListContainer = (props) => {
     useEffect(() => {
         setLoading(true);
 
-        const collectionRef = categoryId 
-            ? query(collection(firestoreDB, "products"), where("category", "==", categoryId))
-            : query(collection(firestoreDB, "products"), orderBy("name", "asc"));
-
-        /*getProducts(categoryId).then(prods => {
+        getProducts(categoryId).then(prods => {
             console.log('Volvio');
             console.log(prods);
             setProducts(prods);
@@ -32,24 +26,7 @@ const ItemListContainer = (props) => {
         }).finally(() => {
             console.log('Finalizó la promesa');
             setLoading(false);
-        });*/
-
-        getDocs(collectionRef).then(response => {
-            console.log('Volvio');
-            console.log(response);
-
-            const products = response.docs.map(doc => {
-                return { id: doc.id, ...doc.data() };
-            });
-
-            setProducts(products);
-        }).catch(error => {
-            console.error(error);
-        }).finally(() => {
-            console.log('Finalizó la promesa');
-            setLoading(false);
         });
-
 
     }, [categoryId]);
 
