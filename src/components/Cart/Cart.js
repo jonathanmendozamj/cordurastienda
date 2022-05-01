@@ -1,9 +1,7 @@
 import { addDoc, collection, Timestamp, writeBatch, documentId, getDocs, where, query } from "@firebase/firestore";
 import { useContext, useState } from "react";
-import { NavLink } from "react-router-dom";
 import CartContext from "../../context/CartContext";
 import { firestoreDB } from "../../services/firebase";
-import ItemCart from "../ItemCart/ItemCart";
 import ItemCartContainer from "../ItemCartContainer/ItemCartContainer";
 
 const Cart = () => {
@@ -18,7 +16,7 @@ const Cart = () => {
         const { name, phone, email, email2 } = objUser;
 
         if(email !== email2){
-            console.log("Hubo un error");
+            console.log("Hubo un error, los mails no son iguales.");
             return;
         }
 
