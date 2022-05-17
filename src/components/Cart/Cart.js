@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import CartContext from "../../context/CartContext";
+import CartEmpty from "../CartEmpty/CartEmpty";
 import CartForm from "../CartForm/CartForm";
 import CartTotal from "../CartTotal/CartTotal";
 import ItemCartContainer from "../ItemCartContainer/ItemCartContainer";
@@ -15,6 +16,7 @@ const Cart = () => {
                     {
                         !isEmpty() ? 
                         <>
+                            <CartEmpty />
                             <CartTotal />
                             <CartForm />
                         </> : 

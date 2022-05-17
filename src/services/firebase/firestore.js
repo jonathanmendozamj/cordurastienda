@@ -1,15 +1,4 @@
-import {
-    getDocs,
-    collection,
-    orderBy,
-    query,
-    where,
-    getDoc,
-    doc,
-    addDoc,
-    documentId,
-    writeBatch,
-} from "@firebase/firestore";
+import { getDocs, collection, orderBy, query, where, getDoc, doc, addDoc, documentId, writeBatch } from "@firebase/firestore";
 import { createAdaptedCategoryFromFirestore } from "../../adapters/categoryAdapter";
 import { createAdaptedProductFromFirestore } from "../../adapters/productAdapter";
 import { firestoreDB } from "./index";
@@ -18,13 +7,13 @@ export const getProducts = (categoryId) => {
     return new Promise((resolve, reject) => {
         const collectionRef = categoryId
             ? query(
-                  collection(firestoreDB, "products"),
-                  where("category", "==", categoryId)
-              )
+                collection(firestoreDB, "products"),
+                where("category", "==", categoryId)
+            )
             : query(
-                  collection(firestoreDB, "products"),
-                  orderBy("name", "asc")
-              );
+                collection(firestoreDB, "products"),
+                orderBy("name", "asc")
+            );
 
         getDocs(collectionRef)
             .then((response) => {
