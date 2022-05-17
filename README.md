@@ -59,7 +59,6 @@ Una vez elegidos todos los productos deseados, vamos a hacer clic en el botón c
 Si queremos confirmar la compra, vamos al formulario ubicado en el sector derecho de la pantalla, cargamos nuestros datos, y finalmente hacemos clic en el botón “Realizar compra”.
 Si se generó la orden de compra de forma correcta, nos mostrará un alert donde nos avisará que efectivamente se realizó la operación, junto con el id de orden de compra.
 
-
 ## Vista previa
 A continuación se muestra una vista previa del proyecto mostrando su navegación dentro del mismo.
 ![Alt text](https://github.com/jonathanmendozamj/cordurastienda/blob/master/public/gif/project.gif)
