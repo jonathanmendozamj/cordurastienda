@@ -69,7 +69,7 @@ const ItemDetail = ({ id, img, name, description, price, stock }) => {
                                     )}
                                     {stock > 0 ? (
                                         isInCart(id) ? (
-                                            <div class="row">
+                                            <div className="row">
                                                 <NavLink className="col-sm-6 col-md-6 mb-2" to="/cart">
                                                     <button className="btn btn-danger card-add">
                                                         Terminar mi compra
