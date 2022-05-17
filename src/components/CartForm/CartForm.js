@@ -50,9 +50,8 @@ const CartForm = () => {
     };
 
     useEffect(() => {
-        console.log(buyer);
         setIsEnabledSubmit(
-            isFullAllFields(buyer) && buyer.email.trim() === buyer.email2.trim()
+            isFullAllFields(buyer) && buyer.email?.trim() === buyer.email2?.trim()
         );
     }, [buyer]);
 
@@ -93,7 +92,7 @@ const CartForm = () => {
         });
     };
 
-    const handleInputChange = (e) => {
+    const handleInputBlur = (e) => {
         setBuyer({
             ...buyer,
             [e.target.name]: e.target.value,
@@ -102,7 +101,7 @@ const CartForm = () => {
 
     const isFullAllFields = (object) => {
         for (let key in object) {
-            if (object[key].trim() === "") {
+            if ((object[key]?.trim() ?? "") === "") {
                 return false;
             }
         }
@@ -134,7 +133,7 @@ const CartForm = () => {
                             placeholder="Nombre completo"
                             type="text"
                             className="form-control"
-                            onChange={handleInputChange}
+                            onBlur={handleInputBlur}
                             required
                         />
                     </div>
@@ -148,7 +147,7 @@ const CartForm = () => {
                             placeholder="Teléfono de contacto"
                             type="number"
                             className="form-control"
-                            onChange={handleInputChange}
+                            onBlur={handleInputBlur}
                             required
                         />
                     </div>
@@ -162,7 +161,7 @@ const CartForm = () => {
                             placeholder="Email"
                             type="email"
                             className="form-control"
-                            onChange={handleInputChange}
+                            onBlur={handleInputBlur}
                             required
                         />
                     </div>
@@ -176,7 +175,7 @@ const CartForm = () => {
                             placeholder="Email"
                             type="email"
                             className="form-control"
-                            onChange={handleInputChange}
+                            onBlur={handleInputBlur}
                             required
                         />
                     </div>
