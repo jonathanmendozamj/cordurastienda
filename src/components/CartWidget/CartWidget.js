@@ -1,22 +1,26 @@
-import { BsCartFill } from 'react-icons/bs';
-import { useContext } from 'react';
-import CartContext from '../../context/CartContext';
+import { BsCartFill } from "react-icons/bs";
+import { useContext } from "react";
+import CartContext from "../../context/CartContext";
+import { NavLink } from "react-router-dom";
 
-const CartWidget = ({ count }) => {
-    console.log("Entró a la f() CartWidget");
-    console.log(count);
-
+const CartWidget = () => {
     const { getQuantity } = useContext(CartContext);
 
-    return(
+    return (
         <div>
-            <div type="button" className="btn btn-light" >
-                <BsCartFill />
-                 Artículos 
-                {
-                    <span className="badge bg-danger ml-5"  style={{ display: "inline-block" }}>{ getQuantity() }</span>
-                }
-            </div>
+            <NavLink to="/cart">
+                <div type="button" className="btn btn-light">
+                    <BsCartFill />
+                    {
+                        <span
+                            className="badge bg-danger ml-5"
+                            style={{ display: "inline-block" }}
+                        >
+                            {getQuantity()}
+                        </span>
+                    }
+                </div>
+            </NavLink>
         </div>
     );
 };

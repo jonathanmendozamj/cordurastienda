@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-	apiKey: "AIzaSyBrks95Dsna-lF_hVOUC4BLwa0Ku5Al5b8",
-	authDomain: "cordurastienda.firebaseapp.com",
-	projectId: "cordurastienda",
-	storageBucket: "cordurastienda.appspot.com",
-	messagingSenderId: "787571914319",
-	appId: "1:787571914319:web:dfe089c62ae85971f31c3a"
+	apiKey: process.env.REACT_APP_apiKey,
+	authDomain: process.env.REACT_APP_authDomain,
+	projectId: process.env.REACT_APP_projectId,
+	storageBucket: process.env.REACT_APP_storageBucket,
+	messagingSenderId: process.env.REACT_APP_messagingSenderId,
+	appId: process.env.REACT_APP_appId
 };
 
 const app = initializeApp(firebaseConfig);

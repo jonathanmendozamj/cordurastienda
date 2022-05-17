@@ -10,23 +10,25 @@ import { CartContextProvider } from './context/CartContext';
 import Cart from './components/Cart/Cart';
 
 function App() {
-  return (
-    <div className="App">
-      <CartContextProvider>
-        <BrowserRouter>
-          <NavBar />
-          <Routes>
-            <Route path='/' element={ <ItemListContainer /> } />
-            <Route path='/category/:categoryId' element={ <ItemListContainer /> } />
-            <Route path='/detail/:productId' element={ <ItemDetailContainer /> } />
-            <Route path='*' element={ <h1>404 NOT FOUND</h1> }/>
-            <Route path='/cart' element={ <Cart /> } />
-          </Routes>
-          <Footer />
-        </BrowserRouter>
-      </CartContextProvider>
-    </div>
-  );
+	return (
+		<div className="App">
+			<main className="d-flex flex-column min-vh-100">
+				<CartContextProvider>
+					<BrowserRouter>
+						<NavBar />
+						<Routes>
+							<Route path='/' element={ <ItemListContainer /> } />
+							<Route path='/category/:categoryId' element={ <ItemListContainer /> } />
+							<Route path='/detail/:productId' element={ <ItemDetailContainer /> } />
+							<Route path='*' element={ <h1>404 NOT FOUND</h1> }/>
+							<Route path='/cart' element={ <Cart /> } />
+						</Routes>
+						<Footer />
+					</BrowserRouter>
+				</CartContextProvider>
+			</main>
+		</div>
+	);
 }
 
 export default App;

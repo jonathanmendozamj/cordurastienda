@@ -1,10 +1,16 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { getArray, setArray } from "../services/storage/storage";
 
 const CartContext = createContext();
+const KEY_CART = "cart";
 
 export const CartContextProvider = ({ children }) => {
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState(getArray(KEY_CART));
     console.log(cart);
+
+    useEffect(() => {
+        setArray(KEY_CART, cart);
+    }, [cart]);
 
     const addItem = (productToAdd) => {
         setCart([...cart, productToAdd]);
@@ -12,8 +18,8 @@ export const CartContextProvider = ({ children }) => {
 
     const getQuantity = () => {
         let count = 0;
-        cart.forEach(prod => {
-            count += prod.quantity;
+        cart.forEach((product) => {
+            count += product.quantity;
         });
 
         return count;
@@ -21,19 +27,19 @@ export const CartContextProvider = ({ children }) => {
 
     const getTotal = () => {
         let sum = 0;
-        cart.forEach(prod => {
-            sum += prod.price * prod.quantity;
+        cart.forEach((product) => {
+            sum += product.price * product.quantity;
         });
 
         return sum;
-    }
+    };
 
     const isEmpty = () => {
-        return (cart.length === 0);
+        return cart.length === 0;
     };
 
     const isInCart = (id) => {
-        return cart.some(product => product.id === id);
+        return cart.some((product) => product.id === id);
     };
 
     const clearCart = () => {
@@ -41,24 +47,26 @@ export const CartContextProvider = ({ children }) => {
     };
 
     const removeItem = (id) => {
-        const products = cart.filter(product => product.id !== id);
+        const products = cart.filter((product) => product.id !== id);
         setCart(products);
     };
 
-    return(
-        <CartContext.Provider value={{
-            cart,
-            addItem,
-            getQuantity,
-            isInCart,
-            isEmpty,
-            clearCart,
-            removeItem,
-            getTotal
-        }}>
-            { children }
+    return (
+        <CartContext.Provider
+            value={{
+                cart,
+                addItem,
+                getQuantity,
+                isInCart,
+                isEmpty,
+                clearCart,
+                removeItem,
+                getTotal,
+            }}
+        >
+            {children}
         </CartContext.Provider>
-    )
+    );
 };
 
 export default CartContext;
