@@ -3,22 +3,15 @@ import { NavLink } from "react-router-dom";
 import CartContext from "../../context/CartContext";
 import { getCategories } from "../../services/firebase/firestore";
 import CartWidget from "../CartWidget/CartWidget";
-import Spinner from "../Spinner/Spinner";
 
 const NavBar = () => {
 	const [categories, setCategories] = useState([]);
-    const [loading, setLoading] = useState(false);
 	const { isEmpty } = useContext(CartContext);
 
 	useEffect(() => {
-        setLoading(true);
-
 		getCategories().then((categories) => {
 			setCategories(categories);
-		})
-        .finally(() => {
-            setLoading(false);
-        });
+		});
 	}, []);
 
     if(loading){

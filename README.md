@@ -41,16 +41,17 @@ Se refiere a las categorías en las cuales se clasifican los productos.
 Orders (órdenes de compra)
 Se refiere a las distintas órdenes de compra que se han generado dentro del proyecto.
 | Campo | Tipo | Descripción |
-| buyer | map | Contiene los datos del cliente |
+| buyer | map | Contiene los datos del cliente (*) |
 | date | date | Contiene la fecha y hora que fue confirmada la orden de compra |
 | items | array | Contiene los productos que componen esa compra |
 | total | number | Es el valor total de la orden de compra |
 
-El campo “buyer”, del tipo map, tiene los siguientes campos 
+(*) El campo "buyer", del tipo map, que se encuentra dentro de "order", tiene los siguientes campos 
 | Campo | Tipo | Descripción |
 | name | string | Contiene el nombre y apellido del cliente |
 | email | string | Contiene el mail del cliente |
 | phone | string | Contiene el número de teléfono del cliente |
 
-# Vista previa
+## Vista previa
 A continuación se muestra una vista previa del proyecto mostrando su navegación dentro del mismo.
+![Alt text](https://github.com/jonathanmendozamj/cordurastienda/blob/master/public/gif/project.gif)
