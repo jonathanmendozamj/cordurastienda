@@ -1,27 +1,16 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getCategories } from "../../services/firebase/firestore";
-import Spinner from "../Spinner/Spinner";
 
 const SideBar = () => {
 	const [categories, setCategories] = useState([]);
-    const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-        setLoading(true);
-
 		getCategories()
 			.then((categories) => {
 				setCategories(categories);
-			})
-            .finally(() => {
-                setLoading(false);
-            });
+			});
 	}, []);
-
-    if(loading){
-        return <Spinner />;
-    }
 
 	return (
 		<aside className="col-lg-3 col-md-3 col-sm-4">

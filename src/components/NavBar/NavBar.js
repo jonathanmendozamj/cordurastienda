@@ -14,10 +14,6 @@ const NavBar = () => {
 		});
 	}, []);
 
-    if(loading){
-        return <Spinner />;
-    }
-
 	return (
 		<header>
 			<div className="container">
