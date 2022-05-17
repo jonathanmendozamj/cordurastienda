@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import CartContext from "../../context/CartContext";
+import CartEmpty from "../CartEmpty/CartEmpty";
 import CartForm from "../CartForm/CartForm";
 import CartTotal from "../CartTotal/CartTotal";
 import ItemCartContainer from "../ItemCartContainer/ItemCartContainer";
 
 const Cart = () => {
-    const { cart, isEmpty } = useContext(CartContext);
-    console.log(cart);
+    const { isEmpty } = useContext(CartContext);
 
     return (
         <div className="container mt-4 mb-4">
@@ -16,6 +16,7 @@ const Cart = () => {
                     {
                         !isEmpty() ? 
                         <>
+                            <CartEmpty />
                             <CartTotal />
                             <CartForm />
                         </> : 

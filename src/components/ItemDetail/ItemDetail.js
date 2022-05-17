@@ -17,7 +17,7 @@ const ItemDetail = ({ id, img, name, description, price, stock }) => {
             name,
             price,
             img,
-            quantity: count,
+            quantity: count
         };
 
         addItem(productObj);
@@ -69,11 +69,18 @@ const ItemDetail = ({ id, img, name, description, price, stock }) => {
                                     )}
                                     {stock > 0 ? (
                                         isInCart(id) ? (
-                                            <NavLink to="/cart">
-                                                <button className="btn btn-danger card-add">
-                                                    Terminar mi compra
-                                                </button>
-                                            </NavLink>
+                                            <div class="row">
+                                                <NavLink className="col-sm-6 col-md-6 mb-2" to="/cart">
+                                                    <button className="btn btn-danger card-add">
+                                                        Terminar mi compra
+                                                    </button>
+                                                </NavLink>
+                                                <NavLink className="col-sm-6 col-md-6 mb-2" to="/">
+                                                    <button className="btn btn-secondary card-add">
+                                                        Continuar comprando
+                                                    </button>
+                                                </NavLink>
+                                            </div>
                                         ) : (
                                             <ItemCount
                                                 initial={1}

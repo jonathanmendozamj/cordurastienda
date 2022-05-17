@@ -31,9 +31,9 @@ const CartForm = () => {
                 return { id, name, quantity, price };
             }),
             buyer: {
-                name,
-                phone,
-                email,
+                name: name.trim(),
+                phone: phone.trim(),
+                email: email.trim(),
             },
             total: getTotal(),
             date: Timestamp.fromDate(new Date()),
@@ -52,7 +52,7 @@ const CartForm = () => {
     useEffect(() => {
         console.log(buyer);
         setIsEnabledSubmit(
-            isFullAllFields(buyer) && buyer.email === buyer.email2
+            isFullAllFields(buyer) && buyer.email.trim() === buyer.email2.trim()
         );
     }, [buyer]);
 
@@ -70,9 +70,7 @@ const CartForm = () => {
     };
 
     const handleError = (error) => {
-        console.error(error);
-        let textAlert =
-            "<p>Hubo un error, no se realizó la orden de compra.</p>";
+        let textAlert = "<p>Hubo un error, no se realizó la orden de compra.</p>";
 
         if (error.name === "outOfStockError") {
             if (Array.isArray(error.products) && error.products?.length > 0) {
@@ -104,7 +102,7 @@ const CartForm = () => {
 
     const isFullAllFields = (object) => {
         for (let key in object) {
-            if (object[key] === "") {
+            if (object[key].trim() === "") {
                 return false;
             }
         }
