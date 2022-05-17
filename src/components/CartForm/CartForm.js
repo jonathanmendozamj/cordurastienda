@@ -50,7 +50,6 @@ const CartForm = () => {
     };
 
     useEffect(() => {
-        console.log(buyer);
         setIsEnabledSubmit(
             isFullAllFields(buyer) && buyer.email === buyer.email2
         );
@@ -70,9 +69,7 @@ const CartForm = () => {
     };
 
     const handleError = (error) => {
-        console.error(error);
-        let textAlert =
-            "<p>Hubo un error, no se realizó la orden de compra.</p>";
+        let textAlert = "<p>Hubo un error, no se realizó la orden de compra.</p>";
 
         if (error.name === "outOfStockError") {
             if (Array.isArray(error.products) && error.products?.length > 0) {
